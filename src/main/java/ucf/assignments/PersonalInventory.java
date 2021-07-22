@@ -24,7 +24,7 @@
      SceneManager sceneManager = new SceneManager();
      sceneManager.load();
      primaryStage.setScene(sceneManager.getScene("Inventory"));
-     primaryStage.setTitle("Inventory Manager!");
+     primaryStage.setTitle("Inventory Manager");
      primaryStage.show();
    }
  }
