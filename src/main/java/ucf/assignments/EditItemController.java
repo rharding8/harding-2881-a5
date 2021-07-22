@@ -6,30 +6,37 @@
 package ucf.assignments;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class AddItemController {
+public class EditItemController {
+  @FXML
   public TextField serialField;
+  @FXML
   public TextField nameField;
+  @FXML
   public TextField valueField;
-  public Button addItemButton;
+  @FXML
+  public Button updateItemButton;
+  @FXML
   public Button cancelButton;
+
   InventoryStore storage;
+  InventoryItem item;
   SceneManager sceneManager;
 
-  public AddItemController(InventoryStore storage, SceneManager sceneManager) {
+  public EditItemController(InventoryStore storage, SceneManager sceneManager) {
     this.storage = storage;
     this.sceneManager = sceneManager;
   }
 
-  public void addItemClicked(ActionEvent actionEvent) {
-    storage.addItem(serialField.getText(), nameField.getText(), Double.parseDouble(valueField.getText()));
-    exit();
+  @FXML
+  public void updateItemClicked(ActionEvent actionEvent) {
   }
 
+  @FXML
   public void cancelButtonClicked(ActionEvent actionEvent) {
     exit();
   }
@@ -37,5 +44,9 @@ public class AddItemController {
   public void exit() {
     Stage stage = (Stage) serialField.getScene().getWindow();
     stage.close();
+  }
+
+  public void setItem(InventoryItem i) {
+    item = i;
   }
 }

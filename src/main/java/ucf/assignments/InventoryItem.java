@@ -3,11 +3,15 @@
  * Copyright 2021 Ryan Harding
  */
 
-package ucf.assignments;public class InventoryItem {
+package ucf.assignments;
+
+public class InventoryItem {
+  private String serial;
   private String name;
   private double value;
 
-  public InventoryItem(String name, double value) {
+  public InventoryItem(String serial, String name, double value) {
+    this.serial = serial;
     this.name = name;
     this.value = value;
   }
@@ -26,5 +30,13 @@ package ucf.assignments;public class InventoryItem {
 
   public void setValue(double value) {
     this.value = value;
+  }
+
+  public String getSerial() {
+    return serial;
+  }
+
+  public void setSerial(String serial) {
+    this.serial = serial;
   }
 }

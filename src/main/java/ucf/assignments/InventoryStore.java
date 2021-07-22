@@ -5,37 +5,46 @@
 
 package ucf.assignments;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class InventoryStore {
-  private Map<String, InventoryItem> items;
+  private ArrayList<InventoryItem> items;
+  private Set<String> serials = new HashSet<>();
 
   public InventoryStore() {
-    items = new HashMap<>();
+    items = new ArrayList<>();
   }
 
-  public InventoryStore(Map<String, InventoryItem> items) {
+  public InventoryStore(ArrayList<InventoryItem> items) {
     this.items = items;
+    for (InventoryItem i: this.items) {
+      serials.add(i.getSerial());
+    }
   }
 
   public boolean addItem(String serial, String name, double value) {
-    if (items.containsKey(serial)) {
+    if (serials.contains(serial)) {
       return false;
     }
-    items.put(serial, new InventoryItem(name,value));
+    serials.add(serial);
+    items.add(new InventoryItem(serial, name, value));
     return true;
   }
 
-  public boolean removeItem(String serial) {
-    if (!items.containsKey(serial)) {
+  public boolean removeItem(String serial, InventoryItem i) {
+    if (!serials.contains(serial)) {
       return false;
     }
-    items.remove(serial);
+    serials.remove(serial);
+    items.remove(i);
     return true;
   }
 
-  public Map<String, InventoryItem> getItems() {
+  public ArrayList<InventoryItem> getItems() {
     return items;
+  }
+
+  public Set<String> getSerials() {
+    return serials;
   }
 }

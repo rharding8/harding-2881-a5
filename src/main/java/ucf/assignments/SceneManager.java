@@ -21,6 +21,7 @@ public class SceneManager {
 
     InventoryController inventoryController = new InventoryController(storage, this);
     AddItemController addItemController = new AddItemController(storage, this);
+    EditItemController editItemController = new EditItemController(storage, this);
 
     Parent root;
 
@@ -38,6 +39,15 @@ public class SceneManager {
     try {
       root = loader.load();
       scenes.put("AddItem", new Scene(root));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+    loader = new FXMLLoader(getClass().getResource("EditItem.fxml"));
+    loader.setController(editItemController);
+    try {
+      root = loader.load();
+      scenes.put("EditItem", new Scene(root));
     } catch (IOException e) {
       e.printStackTrace();
     }
