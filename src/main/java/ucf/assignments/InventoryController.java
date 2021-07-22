@@ -5,20 +5,35 @@
 
 package ucf.assignments;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.util.Callback;
+
+import java.util.Map;
 
 public class InventoryController {
+  @FXML
   public TableView tableDisplay;
+  @FXML
   public Button addItemButton;
+  @FXML
   public Button editItemButton;
+  @FXML
   public Button removeItemButton;
+  @FXML
   public TextField searchField;
+  @FXML
   public ChoiceBox searchByBox;
+  @FXML
   public Button searchButton;
+
   InventoryStore storage;
   SceneManager sceneManager;
 
@@ -27,15 +42,34 @@ public class InventoryController {
     this.sceneManager = sceneManager;
   }
 
-  public void addItemClicked(ActionEvent actionEvent) {
+  @FXML
+  public void initialize() {
   }
 
+  @FXML
+  public void addItemClicked(ActionEvent actionEvent) {
+    // Call the enter method for "AddItem"
+    enterWindow("AddItem");
+  }
+
+  @FXML
   public void editItemClicked(ActionEvent actionEvent) {
   }
 
+  @FXML
   public void removeItemClicked(ActionEvent actionEvent) {
   }
 
+  @FXML
   public void searchClicked(ActionEvent actionEvent) {
+  }
+
+  public void enterWindow(String window) {
+    Stage newStage = new Stage();
+    newStage.setScene(sceneManager.getScene(window));
+    newStage.setTitle("Item Manager");
+    newStage.initModality(Modality.WINDOW_MODAL);
+    newStage.initOwner(addItemButton.getScene().getWindow());
+    newStage.show();
   }
 }

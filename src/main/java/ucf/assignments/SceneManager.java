@@ -20,7 +20,7 @@ public class SceneManager {
     InventoryStore storage = new InventoryStore();
 
     InventoryController inventoryController = new InventoryController(storage, this);
-    /*AddItemController addItemController = new AddItemController(storage, this);*/
+    AddItemController addItemController = new AddItemController(storage, this);
 
     Parent root;
 
@@ -33,14 +33,14 @@ public class SceneManager {
       e.printStackTrace();
     }
 
-    /*loader = new FXMLLoader(getClass().getResource("AddItem.fxml"));
+    loader = new FXMLLoader(getClass().getResource("AddItem.fxml"));
     loader.setController(addItemController);
     try {
       root = loader.load();
-      scenes.put("Item", new Scene(root));
+      scenes.put("AddItem", new Scene(root));
     } catch (IOException e) {
       e.printStackTrace();
-    }*/
+    }
   }
 
   public Scene getScene(String name) {
