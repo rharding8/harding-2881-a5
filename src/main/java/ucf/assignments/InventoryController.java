@@ -89,4 +89,13 @@ public class InventoryController {
   public void refresh() {
     tableDisplay.setItems(FXCollections.observableArrayList(storage.getItems()));
   }
+
+  public void editValue(TableColumn.CellEditEvent<String, InventoryItem> stringInventoryItemCellEditEvent) {
+  }
+
+  public void editSerial(TableColumn.CellEditEvent<String, InventoryItem> stringInventoryItemCellEditEvent) {
+  }
+
+  public void editName(TableColumn.CellEditEvent<String, InventoryItem> stringInventoryItemCellEditEvent) {
+  }
 }

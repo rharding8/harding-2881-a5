@@ -5,11 +5,12 @@
 
 package ucf.assignments;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 public class InventoryStore {
   private ArrayList<InventoryItem> items;
-  private Set<String> serials = new HashSet<>();
+  private Set<String> serialSet = new HashSet<>();
 
   public InventoryStore() {
     items = new ArrayList<>();
@@ -18,24 +19,24 @@ public class InventoryStore {
   public InventoryStore(ArrayList<InventoryItem> items) {
     this.items = items;
     for (InventoryItem i: this.items) {
-      serials.add(i.getSerial());
+      serialSet.add(i.getSerial());
     }
   }
 
-  public boolean addItem(String serial, String name, double value) {
-    if (serials.contains(serial)) {
+  public boolean addItem(String serial, String name, BigDecimal value) {
+    if (serialSet.contains(serial)) {
       return false;
     }
-    serials.add(serial);
+    serialSet.add(serial);
     items.add(new InventoryItem(serial, name, value));
     return true;
   }
 
   public boolean removeItem(String serial, InventoryItem i) {
-    if (!serials.contains(serial)) {
+    if (!serialSet.contains(serial)) {
       return false;
     }
-    serials.remove(serial);
+    serialSet.remove(serial);
     items.remove(i);
     return true;
   }
@@ -44,7 +45,7 @@ public class InventoryStore {
     return items;
   }
 
-  public Set<String> getSerials() {
-    return serials;
+  public Set<String> getSerialSet() {
+    return serialSet;
   }
 }

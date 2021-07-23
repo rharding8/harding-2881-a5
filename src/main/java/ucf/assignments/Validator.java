@@ -5,6 +5,8 @@
 
 package ucf.assignments;
 
+import java.math.BigDecimal;
+
 public class Validator {
   public static boolean nameValidator (String name) {
     if (name == null) {
@@ -14,6 +16,9 @@ public class Validator {
   }
 
   public static boolean serialValidator (String serial) {
+    if (serial == null) {
+      return false;
+    }
     if (serial.length() != 10) {
       return false;
     }

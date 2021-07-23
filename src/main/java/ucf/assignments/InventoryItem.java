@@ -5,12 +5,14 @@
 
 package ucf.assignments;
 
+import java.math.BigDecimal;
+
 public class InventoryItem {
   private String serial;
   private String name;
-  private double value;
+  private BigDecimal value;
 
-  public InventoryItem(String serial, String name, double value) {
+  public InventoryItem(String serial, String name, BigDecimal value) {
     this.serial = serial;
     this.name = name;
     this.value = value;
@@ -24,11 +26,11 @@ public class InventoryItem {
     this.name = name;
   }
 
-  public double getValue() {
+  public BigDecimal getValue() {
     return value;
   }
 
-  public void setValue(double value) {
+  public void setValue(BigDecimal value) {
     this.value = value;
   }
 
