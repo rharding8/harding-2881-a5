@@ -45,6 +45,7 @@ public class AddItemController {
     refreshLabels();
     if (addItem(serialField.getText(), nameField.getText(), valueField.getText())) {
       refreshFields();
+      refreshTable();
       exit();
     }
   }
@@ -97,5 +98,9 @@ public class AddItemController {
     serialField.setText(null);
     nameField.setText(null);
     valueField.setText(null);
+  }
+
+  public void refreshTable() {
+    storage.refreshTable();
   }
 }

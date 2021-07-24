@@ -5,23 +5,19 @@
 
 package ucf.assignments;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Callback;
-
-import java.util.Map;
 
 public class InventoryController {
   @FXML
-  public TableView tableDisplay;
+  public TableView<InventoryItem> tableDisplay;
+  @FXML
+  public Button refreshButton;
   @FXML
   TableColumn<String, InventoryItem> col1;
   @FXML
@@ -54,6 +50,7 @@ public class InventoryController {
     col1.setCellValueFactory(new PropertyValueFactory<>("value"));
     col2.setCellValueFactory(new PropertyValueFactory<>("serial"));
     col3.setCellValueFactory(new PropertyValueFactory<>("name"));
+    storage.table = tableDisplay;
     refresh();
   }
 
@@ -61,16 +58,15 @@ public class InventoryController {
   public void addItemClicked(ActionEvent actionEvent) {
     // Call the enter method for "AddItem"
     enterWindow("AddItem");
-    refresh();
   }
 
   @FXML
   public void editItemClicked(ActionEvent actionEvent) {
-    refresh();
   }
 
   @FXML
   public void removeItemClicked(ActionEvent actionEvent) {
+    removeItem(tableDisplay.getSelectionModel().getSelectedItem());
   }
 
   @FXML
@@ -87,15 +83,16 @@ public class InventoryController {
   }
 
   public void refresh() {
-    tableDisplay.setItems(FXCollections.observableArrayList(storage.getItems()));
+    storage.refreshTable();
   }
 
-  public void editValue(TableColumn.CellEditEvent<String, InventoryItem> stringInventoryItemCellEditEvent) {
+  @FXML
+  public void refreshButtonClicked(ActionEvent actionEvent) {
+    refresh();
   }
 
-  public void editSerial(TableColumn.CellEditEvent<String, InventoryItem> stringInventoryItemCellEditEvent) {
-  }
-
-  public void editName(TableColumn.CellEditEvent<String, InventoryItem> stringInventoryItemCellEditEvent) {
+  public void removeItem(InventoryItem i) {
+    storage.removeItem(i);
+    refresh();
   }
 }

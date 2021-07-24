@@ -5,12 +5,18 @@
 
 package ucf.assignments;
 
+import javafx.collections.FXCollections;
+import javafx.scene.control.TableView;
+
 import java.math.BigDecimal;
 import java.util.*;
 
 public class InventoryStore {
   private ArrayList<InventoryItem> items;
   private Set<String> serialSet = new HashSet<>();
+
+  public InventoryItem selectedItem;
+  public TableView<InventoryItem> table;
 
   public InventoryStore() {
     items = new ArrayList<>();
@@ -32,11 +38,11 @@ public class InventoryStore {
     return true;
   }
 
-  public boolean removeItem(String serial, InventoryItem i) {
-    if (!serialSet.contains(serial)) {
+  public boolean removeItem(InventoryItem i) {
+    if (!serialSet.contains(i.getSerial())) {
       return false;
     }
-    serialSet.remove(serial);
+    serialSet.remove(i.getSerial());
     items.remove(i);
     return true;
   }
@@ -47,5 +53,9 @@ public class InventoryStore {
 
   public Set<String> getSerialSet() {
     return serialSet;
+  }
+
+  public void refreshTable() {
+    table.setItems(FXCollections.observableArrayList(getItems()));
   }
 }
