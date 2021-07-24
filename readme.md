@@ -26,10 +26,9 @@ and the price must be a monetary value.
 Should any data entered be invalid, an error message will display in the window.
 This includes if the serial number entered is already included in the list.
 
-After completing all fields, click either the "Add" or "Add and Exit" button.
-The former will add the item and clear all fields, allowing you to add another item.
-The latter will add the item and exit back to the main interface. You
-may also click the "Cancel" button to exit the window at any time.
+After completing all fields, click the "Add Item" button. 
+The item will be added to the table, and the window will close.
+You may also click the "Cancel" button to exit the window at any time.
 
 **Removing Items**
 

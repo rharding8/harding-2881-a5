@@ -5,10 +5,15 @@
 
 package ucf.assignments;
 
-import java.math.BigDecimal;
-
 public class Validator {
+
   public static boolean nameValidator (String name) {
+    // if name is null
+      // return false
+    // if length of name is between 2 and 256 inclusive
+      // return true
+    // else
+      // return false
     if (name == null) {
       return false;
     }
@@ -16,6 +21,14 @@ public class Validator {
   }
 
   public static boolean serialValidator (String serial) {
+    // if serial is null
+      // return false
+    // if length of serial is not 10
+      // return false
+    // for every character in String serial
+      // if the character is not alphanumeric
+        // return false
+    // return true
     if (serial == null) {
       return false;
     }
