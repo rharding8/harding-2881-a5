@@ -76,6 +76,7 @@ public class InventoryStore {
 
   public void refreshTable() {
     // Set the table to show the items using an observableArrayList
+    table.setItems(null);
     table.setItems(FXCollections.observableArrayList(getItems()));
   }
 }

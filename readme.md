@@ -41,7 +41,8 @@ an item.
 To edit an item in the list, click the item you wish to
 edit and then click "Edit Item" (Which will remain greyed out 
 until you have selected an item). A window very much like the "Add Item" window
-will pop up, with all values from the item populating the fields.
+will pop up. Click somewhere in the blank space of the window to populate the fields with
+the existing information.
 
 Then you may edit any of the fields to change the data. As with adding items,
 any invalid data will result in an error message in the window, including

@@ -10,7 +10,7 @@
   ~ Copyright 2021 Ryan Harding
   -->
 
-<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane onMouseClicked="#showData" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TextField fx:id="serialField" layoutX="120.0" layoutY="50.0" promptText="Enter Serial Number:" />
       <TextField fx:id="nameField" layoutX="120.0" layoutY="125.0" promptText="Enter Name:" />
@@ -18,5 +18,8 @@
       <TextField fx:id="valueField" layoutX="202.0" layoutY="195.0" prefHeight="26.0" prefWidth="76.0" />
       <Button fx:id="updateItemButton" layoutX="65.0" layoutY="249.0" mnemonicParsing="false" onAction="#updateItemClicked" text="Update Item" />
       <Button fx:id="cancelButton" layoutX="278.0" layoutY="249.0" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel" />
+      <Label fx:id="invalidSerialLabel" layoutX="99.0" layoutY="90.0" text="ERROR: Invalid Serial Number Entered" visible="false" />
+      <Label fx:id="invalidNameLabel" layoutX="119.0" layoutY="165.0" text="ERROR: Invalid Name Entered" visible="false" />
+      <Label fx:id="invalidValueLabel" layoutX="125.0" layoutY="225.0" text="ERROR: Value Not Monetary" visible="false" />
    </children>
 </AnchorPane>
