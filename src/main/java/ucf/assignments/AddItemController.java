@@ -7,7 +7,6 @@ package ucf.assignments;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -33,8 +32,12 @@ public class AddItemController {
   @FXML
   public Label invalidValueLabel;
 
-  InventoryStore storage;
-  SceneManager sceneManager;
+  public InventoryStore storage;
+  public SceneManager sceneManager;
+
+  public AddItemController() {
+    storage = new InventoryStore();
+  }
 
   public AddItemController(InventoryStore storage, SceneManager sceneManager) {
     this.storage = storage;
@@ -63,16 +66,19 @@ public class AddItemController {
 
   public boolean addItem(String serial, String name, String value) {
     boolean check = true;
-    if (!Validator.serialValidator(serial)) {
-      invalidSerialLabel.setVisible(true);
+    if (!Validator.serialValidator(serial) || storage.getSerialSet().contains(serial)) {
+      if (invalidSerialLabel != null)
+        invalidSerialLabel.setVisible(true);
       check = false;
     }
     if (!Validator.nameValidator(name)) {
-      invalidNameLabel.setVisible(true);
+      if (invalidNameLabel != null)
+        invalidNameLabel.setVisible(true);
       check = false;
     }
     if (value == null) {
-      invalidValueLabel.setVisible(true);
+      if (invalidValueLabel != null)
+        invalidValueLabel.setVisible(true);
       return false;
     }
     try {
@@ -82,7 +88,8 @@ public class AddItemController {
       }
     }
     catch (NumberFormatException e) {
-      invalidValueLabel.setVisible(true);
+      if (invalidValueLabel != null)
+        invalidValueLabel.setVisible(true);
       check = false;
     }
     return check;

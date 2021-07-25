@@ -36,32 +36,24 @@ public class InventoryStore {
     }
   }
 
-  public boolean addItem(String serial, String name, BigDecimal value) {
+  public void addItem(String serial, String name, BigDecimal value) {
     // if serialSet contains serial
       // return false
     // Add serial to serialSet
     // Add a new InventoryItem created from given parameters to items
     // Return true
-    if (serialSet.contains(serial)) {
-      return false;
-    }
     serialSet.add(serial);
     items.add(new InventoryItem(serial, name, value));
-    return true;
   }
 
-  public boolean removeItem(InventoryItem i) {
+  public void removeItem(InventoryItem i) {
     // if serialSet does not contain serial
       // return false
     // Remove the serial of i from serialSet
     // Remove i from items
     // return true
-    if (!serialSet.contains(i.getSerial())) {
-      return false;
-    }
     serialSet.remove(i.getSerial());
     items.remove(i);
-    return true;
   }
 
   public ArrayList<InventoryItem> getItems() {
