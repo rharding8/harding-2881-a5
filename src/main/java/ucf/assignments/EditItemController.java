@@ -38,6 +38,10 @@ public class EditItemController {
   InventoryItem i;
   SceneManager sceneManager;
 
+  public EditItemController() {
+    storage = new InventoryStore();
+  }
+
   public EditItemController(InventoryStore storage, SceneManager sceneManager) {
     this.storage = storage;
     this.sceneManager = sceneManager;
@@ -66,15 +70,23 @@ public class EditItemController {
   public boolean updateItem(String serial, String name, String value) {
     boolean check = true;
     if (!Validator.serialValidator(serial)) {
-      invalidSerialLabel.setVisible(true);
+      if (invalidSerialLabel != null)
+        invalidSerialLabel.setVisible(true);
+      check = false;
+    }
+    if (!serial.equals(i.getSerial()) && storage.getSerialSet().contains(serial)) {
+      if (invalidSerialLabel != null)
+        invalidSerialLabel.setVisible(true);
       check = false;
     }
     if (!Validator.nameValidator(name)) {
-      invalidNameLabel.setVisible(true);
+      if (invalidNameLabel != null)
+        invalidNameLabel.setVisible(true);
       check = false;
     }
     if (value == null) {
-      invalidValueLabel.setVisible(true);
+      if (invalidValueLabel != null)
+        invalidValueLabel.setVisible(true);
       return false;
     }
     try {
@@ -85,7 +97,8 @@ public class EditItemController {
       }
     }
     catch (NumberFormatException e) {
-      invalidValueLabel.setVisible(true);
+      if (invalidValueLabel != null)
+        invalidValueLabel.setVisible(true);
       check = false;
     }
     return check;
