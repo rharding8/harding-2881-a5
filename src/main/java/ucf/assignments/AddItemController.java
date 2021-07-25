@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class AddItemController {
   @FXML
@@ -83,6 +84,7 @@ public class AddItemController {
     }
     try {
       BigDecimal money = new BigDecimal(value);
+      money = money.setScale(2, RoundingMode.HALF_UP);
       if (check) {
         storage.addItem(serial.toUpperCase(), name, money);
       }

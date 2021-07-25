@@ -27,15 +27,6 @@ public class InventoryStore {
     items = new ArrayList<>();
   }
 
-  public InventoryStore(ArrayList<InventoryItem> items) {
-    // Set items to given ArrayList of InventoryItems
-    // Add every serial number in items into serialSet
-    this.items = items;
-    for (InventoryItem i: this.items) {
-      serialSet.add(i.getSerial());
-    }
-  }
-
   public void addItem(String serial, String name, BigDecimal value) {
     // if serialSet contains serial
       // return false
@@ -59,6 +50,14 @@ public class InventoryStore {
   public ArrayList<InventoryItem> getItems() {
     // Return items
     return items;
+  }
+
+  public void setItems(ArrayList<InventoryItem> items) {
+    this.items = items;
+    serialSet = new HashSet<>();
+    for (InventoryItem i: items) {
+      serialSet.add(i.getSerial());
+    }
   }
 
   public Set<String> getSerialSet() {

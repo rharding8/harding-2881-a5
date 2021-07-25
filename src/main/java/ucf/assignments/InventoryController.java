@@ -12,9 +12,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
+import javafx.stage.*;
+
+import java.io.File;
+import java.util.ArrayList;
 
 public class InventoryController {
   @FXML
@@ -142,8 +143,26 @@ public class InventoryController {
   }
 
   public void saveButtonClicked(ActionEvent actionEvent) {
+    Window window = tableDisplay.getScene().getWindow();
+    FileChooser chooser = new FileChooser();
+    chooser.setInitialFileName("MyInventory.txt");
+    chooser.getExtensionFilters().addAll(
+            new FileChooser.ExtensionFilter("Text (TSV) Files", "*.txt")
+            ,new FileChooser.ExtensionFilter("HTML Files", "*.html")
+            ,new FileChooser.ExtensionFilter("JSon Files", "*.json")
+    );
+    File newFile = chooser.showSaveDialog(window);
+    InventoryIO.saveFile(newFile, storage.getItems());
   }
 
   public void loadButtonClicked(ActionEvent actionEvent) {
+    Window window = tableDisplay.getScene().getWindow();
+    FileChooser chooser = new FileChooser();
+    File myFile = chooser.showOpenDialog(window);
+    ArrayList<InventoryItem> loadedItems = InventoryIO.loadFile(myFile);
+    if (loadedItems != null) {
+      storage.setItems(loadedItems);
+      refresh();
+    }
   }
 }
