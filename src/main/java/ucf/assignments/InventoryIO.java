@@ -7,13 +7,8 @@ package ucf.assignments;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import javafx.collections.FXCollections;
-import javafx.scene.Parent;
 import org.apache.commons.io.FilenameUtils;
-
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
-import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -27,8 +22,11 @@ public class InventoryIO {
     else if (type.equals("json")) {
       saveAsJSon(myFile, items);
     }
+    else if (type.equals("html")) {
+      saveAsHTML(myFile, items);
+    }
     else {
-      System.out.println("Not so fast!");
+      System.out.println("You can't save to that!");
     }
   }
 
@@ -59,6 +57,22 @@ public class InventoryIO {
     }
   }
 
+  public static void saveAsHTML(File myFile, ArrayList<InventoryItem> items) {
+    try {
+      PrintWriter writer = new PrintWriter(new FileWriter(myFile));
+      writer.println("<TABLE BORDER><TR><TH>Value<TH>Serial Number<TH>Name</TR>");
+      for (InventoryItem i: items) {
+        writer.println("<TR><TD>" + i.getValue() + "<TD>" + i.getSerial() +"<TD>" + i.getName());
+      }
+      writer.println("</TABLE>");
+      writer.flush();
+      writer.close();
+    }
+    catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
   public static ArrayList<InventoryItem> loadFile(File myFile) {
     String type = FilenameUtils.getExtension(myFile.getName());
     if (type.equals("txt")) {
@@ -67,8 +81,11 @@ public class InventoryIO {
     else if (type.equals("json")) {
       return loadFromJSon(myFile);
     }
+    else if (type.equals("html")) {
+      return loadFromHTML(myFile);
+    }
     else {
-      System.out.println("Not so fast!");
+      System.out.println("Ya can't load that!");
       return null;
     }
   }
@@ -101,4 +118,24 @@ public class InventoryIO {
     }
     return items;
   }
+
+  public static ArrayList<InventoryItem> loadFromHTML(File myFile) {
+    ArrayList<InventoryItem> items = new ArrayList<>();
+    try {
+      Scanner scanner = new Scanner(myFile);
+      String header = scanner.nextLine();
+      while (scanner.hasNextLine()) {
+        String line = scanner.nextLine();
+        if (!line.equals("</TABLE>")) {
+          String[] data = line.split("<TD>");
+          items.add(new InventoryItem(data[2], data[3], new BigDecimal(data[1])));
+        }
+      }
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+      return null;
+    }
+    return items;
+  }
+
 }
