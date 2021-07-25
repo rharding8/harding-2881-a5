@@ -5,6 +5,7 @@
 
 package ucf.assignments;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,6 +21,8 @@ public class InventoryController {
   public TableView<InventoryItem> tableDisplay;
   @FXML
   public Button refreshButton;
+  public Button saveButton;
+  public Button loadButton;
   @FXML
   TableColumn<String, InventoryItem> col1;
   @FXML
@@ -54,6 +57,8 @@ public class InventoryController {
     col3.setCellValueFactory(new PropertyValueFactory<>("name"));
     storage.table = tableDisplay;
     searchByBox.setItems(FXCollections.observableArrayList("Serial Number", "Name"));
+    editItemButton.disableProperty().bind(Bindings.isEmpty(tableDisplay.getSelectionModel().getSelectedItems()));
+    removeItemButton.disableProperty().bind(Bindings.isEmpty(tableDisplay.getSelectionModel().getSelectedItems()));
     refresh();
   }
 
@@ -134,5 +139,11 @@ public class InventoryController {
       }
     }
     return null;
+  }
+
+  public void saveButtonClicked(ActionEvent actionEvent) {
+  }
+
+  public void loadButtonClicked(ActionEvent actionEvent) {
   }
 }
