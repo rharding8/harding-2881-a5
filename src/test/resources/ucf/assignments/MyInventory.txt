@@ -1,0 +1,4 @@
+Value	Serial Number	Name
+1.00	AAAAAAAA01	Test Item 1
+2.00	BBBBBBBB02	Test Item 2
+3.00	CCCCCCCC03	Test Item 3

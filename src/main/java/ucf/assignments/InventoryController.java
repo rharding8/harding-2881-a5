@@ -46,6 +46,10 @@ public class InventoryController {
   InventoryStore storage;
   SceneManager sceneManager;
 
+  public InventoryController() {
+    storage = new InventoryStore();
+  }
+
   public InventoryController(InventoryStore storage, SceneManager sceneManager) {
     this.storage = storage;
     this.sceneManager = sceneManager;
@@ -78,6 +82,7 @@ public class InventoryController {
   @FXML
   public void removeItemClicked(ActionEvent actionEvent) {
     removeItem(tableDisplay.getSelectionModel().getSelectedItem());
+    refresh();
   }
 
   @FXML
@@ -105,7 +110,6 @@ public class InventoryController {
 
   public void removeItem(InventoryItem i) {
     storage.removeItem(i);
-    refresh();
   }
 
   public InventoryItem search(String choice, String searchStr) {

@@ -6,6 +6,7 @@
 package ucf.assignments;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class InventoryItem {
   // Strings for serial number and name
@@ -49,5 +50,18 @@ public class InventoryItem {
   public void setSerial(String serial) {
     // Set serial to given String
     this.serial = serial;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    InventoryItem that = (InventoryItem) o;
+    return serial.equals(that.serial) && name.equals(that.name) && value.equals(that.value);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(serial, name, value);
   }
 }
