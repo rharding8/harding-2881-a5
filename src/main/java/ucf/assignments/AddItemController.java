@@ -78,7 +78,7 @@ public class AddItemController {
     try {
       BigDecimal money = new BigDecimal(value);
       if (check) {
-        storage.addItem(serial, name, money);
+        storage.addItem(serial.toUpperCase(), name, money);
       }
     }
     catch (NumberFormatException e) {

@@ -5,6 +5,7 @@
 
 package ucf.assignments;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -52,6 +53,7 @@ public class InventoryController {
     col2.setCellValueFactory(new PropertyValueFactory<>("serial"));
     col3.setCellValueFactory(new PropertyValueFactory<>("name"));
     storage.table = tableDisplay;
+    searchByBox.setItems(FXCollections.observableArrayList("Serial Number", "Name"));
     refresh();
   }
 
@@ -74,6 +76,7 @@ public class InventoryController {
 
   @FXML
   public void searchClicked(ActionEvent actionEvent) {
+    tableDisplay.getSelectionModel().select(search((String) searchByBox.getValue(), searchField.getText()));
   }
 
   public void enterWindow(String window) {
@@ -97,5 +100,39 @@ public class InventoryController {
   public void removeItem(InventoryItem i) {
     storage.removeItem(i);
     refresh();
+  }
+
+  public InventoryItem search(String choice, String searchStr) {
+    if (choice == null || searchStr == null) {
+      return null;
+    }
+    if (choice.equals("Serial Number"))
+    {
+      return searchBySerial(searchStr);
+    }
+    else if (choice.equals("Name")) {
+      return searchByName(searchStr);
+    }
+    else {
+      return null;
+    }
+  }
+
+  public InventoryItem searchBySerial(String search) {
+    for (InventoryItem i: storage.getItems()) {
+      if (i.getSerial().equals(search.toUpperCase())) {
+        return i;
+      }
+    }
+    return null;
+  }
+
+  public InventoryItem searchByName(String search) {
+    for (InventoryItem i: storage.getItems()) {
+      if (i.getName().equals(search)) {
+        return i;
+      }
+    }
+    return null;
   }
 }

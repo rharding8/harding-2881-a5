@@ -17,9 +17,9 @@
    <items>
       <TableView fx:id="tableDisplay" prefHeight="400.0" prefWidth="450.0">
         <columns>
-          <TableColumn fx:id="col1" prefWidth="150.0" text="Value ($)" />
-          <TableColumn fx:id="col2" prefWidth="150.0" text="Serial Number" />
-            <TableColumn fx:id="col3" prefWidth="150.0" text="Name" />
+          <TableColumn fx:id="col1" editable="false" prefWidth="150.0" text="Value ($)" />
+          <TableColumn fx:id="col2" editable="false" prefWidth="150.0" text="Serial Number" />
+            <TableColumn fx:id="col3" editable="false" prefWidth="150.0" text="Name" />
         </columns>
       </TableView>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="200.0">
@@ -27,10 +27,12 @@
             <Button fx:id="addItemButton" layoutX="53.0" layoutY="35.0" mnemonicParsing="false" onAction="#addItemClicked" text="Add New Item" />
             <Button fx:id="editItemButton" layoutX="68.0" layoutY="105.0" mnemonicParsing="false" onAction="#editItemClicked" text="Edit Item" />
             <Button fx:id="removeItemButton" layoutX="56.0" layoutY="175.0" mnemonicParsing="false" onAction="#removeItemClicked" text="Remove Item" />
-            <TextField fx:id="searchField" layoutX="21.0" layoutY="416.0" promptText="Search Field:" />
-            <ChoiceBox fx:id="searchByBox" layoutX="26.0" layoutY="466.0" prefWidth="150.0" />
-            <Button fx:id="searchButton" layoutX="74.0" layoutY="516.0" mnemonicParsing="false" onAction="#searchClicked" text="Search" />
+            <TextField fx:id="searchField" layoutX="21.0" layoutY="317.0" promptText="Search Field:" />
+            <ChoiceBox fx:id="searchByBox" layoutX="26.0" layoutY="367.0" prefWidth="150.0" />
+            <Button fx:id="searchButton" layoutX="74.0" layoutY="417.0" mnemonicParsing="false" onAction="#searchClicked" text="Search" />
             <Button fx:id="refreshButton" layoutX="59.0" layoutY="245.0" mnemonicParsing="false" onAction="#refreshButtonClicked" text="Refresh List" />
+            <Button fx:id="saveButton" layoutX="53.0" layoutY="487.0" mnemonicParsing="false" onAction="#saveButtonClicked" text="Save Inventory" />
+            <Button fx:id="loadButton" layoutX="53.0" layoutY="537.0" mnemonicParsing="false" onAction="#loadButtonClicked" text="Load Inventory" />
          </children>
       </AnchorPane>
    </items>
