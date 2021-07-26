@@ -1,0 +1,113 @@
+@startuml
+
+class AddItemController {
+    storage: InventoryStore
+    sceneManager: SceneManager
+    AddItemController()
+    exit()
+    addItem()
+    refreshLabels()
+    refreshFields()
+    refreshTable()
+}
+
+class EditItemController {
+    storage: InventoryStore
+    sceneManager: SceneManager
+    i: InventoryItem
+    EditItemController()
+    exit()
+    updateItem()
+    refreshLabels()
+    refreshFields()
+}
+
+class InventoryController {
+    storage: InventoryStore
+    sceneManager: SceneManager
+    InventoryController()
+    enterWindow()
+    refresh()
+    removeItem()
+    search()
+    searchBySerial()
+    searchByName()
+}
+
+
+class InventoryIO {
+    saveFile()
+    saveAsTSV()
+    saveAsJSon()
+    saveAsHTML()
+    loadFile()
+    loadFromTSV()
+    loadFromJSon()
+    loadFromHTML()
+}
+
+class InventoryItem {
+    serial: String
+    name: String
+    value: BigDecimal
+    InventoryItem()
+    getName()
+    setName()
+    getSerial()
+    setSerial()
+    getValue()
+    setValue()
+    equals()
+    hashCode()
+}
+
+class InventoryStore{
+    items: ArrayList
+    serialSet: Set
+    selectedItem: InventoryItem
+    table: TableView
+    InventoryStore()
+    addItem()
+    removeItem()
+    getItems()
+    setItems()
+    getSerialSet()
+    refreshTable()
+}
+
+class PersonalInventory {
+    main()
+    start()
+}
+
+class SceneManager {
+    scenes : Map
+    load()
+    getScene()
+}
+
+class Validator {
+    nameValidator()
+    serialValidator()
+}
+
+
+
+javafx.Application <|- PersonalInventory
+PersonalInventory -- SceneManager
+SceneManager - InventoryStore
+SceneManager -- InventoryController
+SceneManager -- AddItemController
+SceneManager -- EditItemController
+InventoryStore -- InventoryItem
+InventoryController --- InventoryStore
+InventoryController --- InventoryIO
+AddItemController --- InventoryStore
+AddItemController -- Validator
+EditItemController --- InventoryStore
+EditItemController - InventoryItem
+EditItemController -- Validator
+InventoryIO -- InventoryItem
+
+
+@enduml

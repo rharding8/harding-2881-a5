@@ -8,7 +8,6 @@ package ucf.assignments;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -22,7 +21,9 @@ public class InventoryController {
   public TableView<InventoryItem> tableDisplay;
   @FXML
   public Button refreshButton;
+  @FXML
   public Button saveButton;
+  @FXML
   public Button loadButton;
   @FXML
   TableColumn<String, InventoryItem> col1;
@@ -146,6 +147,7 @@ public class InventoryController {
     return null;
   }
 
+  @FXML
   public void saveButtonClicked(ActionEvent actionEvent) {
     Window window = tableDisplay.getScene().getWindow();
     FileChooser chooser = new FileChooser();
@@ -159,6 +161,7 @@ public class InventoryController {
     InventoryIO.saveFile(newFile, storage.getItems());
   }
 
+  @FXML
   public void loadButtonClicked(ActionEvent actionEvent) {
     Window window = tableDisplay.getScene().getWindow();
     FileChooser chooser = new FileChooser();

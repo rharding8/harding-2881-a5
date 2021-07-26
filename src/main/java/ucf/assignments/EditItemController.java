@@ -12,7 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 import java.math.BigDecimal;
 
@@ -53,6 +52,7 @@ public class EditItemController {
     stage.close();
   }
 
+  @FXML
   public void updateItemClicked(ActionEvent actionEvent) {
     refreshLabels();
     if (updateItem(serialField.getText(), nameField.getText(), valueField.getText())) {
@@ -61,6 +61,7 @@ public class EditItemController {
     }
   }
 
+  @FXML
   public void cancelButtonClicked(ActionEvent actionEvent) {
     refreshLabels();
     refreshFields();

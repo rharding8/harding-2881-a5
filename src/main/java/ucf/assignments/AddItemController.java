@@ -45,6 +45,7 @@ public class AddItemController {
     this.sceneManager = sceneManager;
   }
 
+  @FXML
   public void addItemClicked(ActionEvent actionEvent) {
     refreshLabels();
     if (addItem(serialField.getText(), nameField.getText(), valueField.getText())) {
@@ -54,6 +55,7 @@ public class AddItemController {
     }
   }
 
+  @FXML
   public void cancelButtonClicked(ActionEvent actionEvent) {
     refreshLabels();
     refreshFields();

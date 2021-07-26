@@ -32,16 +32,6 @@ public class InventoryItem {
     this.name = name;
   }
 
-  public BigDecimal getValue() {
-    // Return Monetary value
-    return value;
-  }
-
-  public void setValue(BigDecimal value) {
-    // Set value to given BigDecimal value
-    this.value = value;
-  }
-
   public String getSerial() {
     // Return String serial
     return serial;
@@ -50,6 +40,16 @@ public class InventoryItem {
   public void setSerial(String serial) {
     // Set serial to given String
     this.serial = serial;
+  }
+
+  public BigDecimal getValue() {
+    // Return Monetary value
+    return value;
+  }
+
+  public void setValue(BigDecimal value) {
+    // Set value to given BigDecimal value
+    this.value = value;
   }
 
   @Override
