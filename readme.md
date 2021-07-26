@@ -1,4 +1,5 @@
-#Introduction
+Introduction
+-
 
 Inventory Manager is a simple program to 
 manage an inventory of items,
@@ -14,7 +15,8 @@ All items will display in a table, and
 can be saved to and loaded from
 JSon, HTML, and txt files.
 
-#The Basics
+The Basics
+-
 **Adding Items**
 
 To add an item into the list, click the "Add Item" button. A window asking for a serial number,
@@ -51,7 +53,8 @@ using a serial number that is already used in the list.
 Finally, click "Update Item" to save changes. If you do not wish to save the changes,
 click "Cancel" to exit back to the main interface.
 
-#Search and Sort Items
+Search and Sort Items
+-
 **Searching For Items**
 
 To search for an item, enter the name or serial number you want to search for in the
@@ -66,7 +69,8 @@ sort by. One click will set to ascending order, the next to descending order, an
 back to the original order. The latter will also happen if you click "Refresh List" and when items are
 added, removed, or changed.
 
-#External Storage
+External Storage
+-
 **Saving Files**
 
 To save your Inventory to an external file, click the "Save Inventory" button.
@@ -89,7 +93,8 @@ Just as a note, successfully loading an Inventory from a file WILL clear the cur
 attempting to manage multiple inventories, remember to save your current inventory before loading
 another and thus wiping out your current memory.
 
-#Acknowledgements
+Acknowledgements
+-
 
 Apache for creating open source methods used in this program.
 
