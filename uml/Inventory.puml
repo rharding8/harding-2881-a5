@@ -1,9 +1,19 @@
 @startuml
 
 class AddItemController {
-    storage: InventoryStore
-    sceneManager: SceneManager
+    serialField : TextField
+    nameField : TextField
+    valueField : TextField
+    addItemButton : Button
+    cancelButton : Button
+    invalidSerialLabel : Label
+    invalidNameLabel : Label
+    invalidValueLabel : Label
+    storage : InventoryStore
+    sceneManager : SceneManager
     AddItemController()
+    addItemClicked()
+    cancelButtonClicked()
     exit()
     addItem()
     refreshLabels()
@@ -12,20 +22,52 @@ class AddItemController {
 }
 
 class EditItemController {
-    storage: InventoryStore
-    sceneManager: SceneManager
-    i: InventoryItem
+    serialField : TextField
+    nameField : TextField
+    valueField : TextField
+    updateItemButton : Button
+    cancelButton : Button
+    invalidSerialLabel : Label
+    invalidNameLabel : Label
+    invalidValueLabel : Label
+    storage : InventoryStore
+    sceneManager : SceneManager
+    i : InventoryItem
     EditItemController()
     exit()
+    updateItemClicked()
+    cancelButtonClicked()
     updateItem()
     refreshLabels()
     refreshFields()
+    showData()
 }
 
 class InventoryController {
-    storage: InventoryStore
-    sceneManager: SceneManager
+    tableDisplay : TableView
+    col1 : TableColumn
+    col2 : TableColumn
+    col3 : TableColumn
+    refreshButton : Button
+    saveButton : Button
+    loadButton : Button
+    addItemButton : Button
+    removeItemButton : Button
+    editItemButton : Button
+    searchButton : Button
+    searchField : TextField
+    searchByBox : ChoiceBox
+    storage : InventoryStore
+    sceneManager : SceneManager
     InventoryController()
+    initialize()
+    addItemClicked()
+    editItemClicked()
+    removeItemClicked()
+    searchClicked()
+    refreshButtonClicked()
+    saveButtonClicked()
+    loadButtonClicked()
     enterWindow()
     refresh()
     removeItem()
@@ -47,9 +89,9 @@ class InventoryIO {
 }
 
 class InventoryItem {
-    serial: String
-    name: String
-    value: BigDecimal
+    serial : String
+    name : String
+    value : BigDecimal
     InventoryItem()
     getName()
     setName()
@@ -62,10 +104,10 @@ class InventoryItem {
 }
 
 class InventoryStore{
-    items: ArrayList
-    serialSet: Set
-    selectedItem: InventoryItem
-    table: TableView
+    items : ArrayList
+    serialSet : Set
+    selectedItem : InventoryItem
+    table : TableView
     InventoryStore()
     addItem()
     removeItem()
@@ -94,7 +136,7 @@ class Validator {
 
 
 javafx.Application <|- PersonalInventory
-PersonalInventory -- SceneManager
+PersonalInventory - SceneManager
 SceneManager - InventoryStore
 SceneManager -- InventoryController
 SceneManager -- AddItemController
