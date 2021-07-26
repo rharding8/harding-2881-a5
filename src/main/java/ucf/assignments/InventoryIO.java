@@ -99,7 +99,7 @@ public class InventoryIO {
         String[] data = scanner.nextLine().split("\t");
         items.add(new InventoryItem(data[1], data[2], new BigDecimal(data[0])));
       }
-    } catch (FileNotFoundException e) {
+    } catch (FileNotFoundException | IndexOutOfBoundsException e) {
       e.printStackTrace();
       return null;
     }
