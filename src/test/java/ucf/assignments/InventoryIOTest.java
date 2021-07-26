@@ -8,12 +8,12 @@ package ucf.assignments;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SuppressWarnings("ConstantConditions")
 class InventoryIOTest {
 
   @Test
@@ -21,7 +21,7 @@ class InventoryIOTest {
     ArrayList<InventoryItem> items = new ArrayList<>();
     items.add(new InventoryItem("00000000AB", "Test Item", new BigDecimal("1.00")));
     File myFile = new File(getClass().getResource("./").getPath() + "savedInventory.txt");
-    InventoryIO.saveAsTSV(myFile, items);
+    assertTrue(InventoryIO.saveAsTSV(myFile, items));
     assertTrue(myFile.exists());
   }
 
@@ -30,7 +30,7 @@ class InventoryIOTest {
     ArrayList<InventoryItem> items = new ArrayList<>();
     items.add(new InventoryItem("00000000AB", "Test Item", new BigDecimal("1.00")));
     File myFile = new File(getClass().getResource("./").getPath() + "savedInventory.json");
-    InventoryIO.saveAsJSon(myFile, items);
+    assertTrue(InventoryIO.saveAsJSon(myFile, items));
     assertTrue(myFile.exists());
   }
 
@@ -39,14 +39,14 @@ class InventoryIOTest {
     ArrayList<InventoryItem> items = new ArrayList<>();
     items.add(new InventoryItem("00000000AB", "Test Item", new BigDecimal("1.00")));
     File myFile = new File(getClass().getResource("./").getPath() + "savedInventory.html");
-    InventoryIO.saveAsHTML(myFile, items);
+    assertTrue(InventoryIO.saveAsHTML(myFile, items));
     assertTrue(myFile.exists());
   }
 
   @Test
   void loadFromTSV() {
     File myFile = new File(getClass().getResource("MyInventory.txt").getPath());
-    ArrayList<InventoryItem> items = null;
+    ArrayList<InventoryItem> items;
     items = InventoryIO.loadFromTSV(myFile);
     assertNotNull(items);
   }
@@ -54,7 +54,7 @@ class InventoryIOTest {
   @Test
   void loadFromJSon() {
     File myFile = new File(getClass().getResource("MyInventory.json").getPath());
-    ArrayList<InventoryItem> items = null;
+    ArrayList<InventoryItem> items;
     items = InventoryIO.loadFromJSon(myFile);
     assertNotNull(items);
   }
@@ -62,7 +62,7 @@ class InventoryIOTest {
   @Test
   void loadFromHTML() {
     File myFile = new File(getClass().getResource("MyInventory.html").getPath());
-    ArrayList<InventoryItem> items = null;
+    ArrayList<InventoryItem> items;
     items = InventoryIO.loadFromHTML(myFile);
     assertNotNull(items);
   }

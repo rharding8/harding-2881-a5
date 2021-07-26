@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SuppressWarnings("SpellCheckingInspection")
 class InventoryControllerTest {
 
   @Test
