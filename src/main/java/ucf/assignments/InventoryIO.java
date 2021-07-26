@@ -13,24 +13,19 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+@SuppressWarnings({"UnusedDeclaration"})
 public class InventoryIO {
-  public static void saveFile(File myFile, ArrayList<InventoryItem> items) {
+  public static boolean saveFile(File myFile, ArrayList<InventoryItem> items) {
     String type = FilenameUtils.getExtension(myFile.getName());
-    if (type.equals("txt")) {
-      saveAsTSV(myFile, items);
-    }
-    else if (type.equals("json")) {
-      saveAsJSon(myFile, items);
-    }
-    else if (type.equals("html")) {
-      saveAsHTML(myFile, items);
-    }
-    else {
-      System.out.println("You can't save to that!");
-    }
+    return switch (type) {
+      case "txt" -> saveAsTSV(myFile, items);
+      case "json" -> saveAsJSon(myFile, items);
+      case "html" -> saveAsHTML(myFile, items);
+      default -> false;
+    };
   }
 
-  public static void saveAsTSV(File myFile, ArrayList<InventoryItem> items) {
+  public static boolean saveAsTSV(File myFile, ArrayList<InventoryItem> items) {
     try {
       FileWriter writer = new FileWriter(myFile);
       writer.write("Value\tSerial Number\tName\n");
@@ -39,25 +34,29 @@ public class InventoryIO {
       }
       writer.flush();
       writer.close();
+      return true;
     } catch (IOException e) {
       e.printStackTrace();
+      return false;
     }
   }
 
-  public static void saveAsJSon(File myFile, ArrayList<InventoryItem> items) {
+  public static boolean saveAsJSon(File myFile, ArrayList<InventoryItem> items) {
     try {
       Gson gson = new Gson();
       FileWriter writer = new FileWriter(myFile);
       gson.toJson(items, writer);
       writer.flush();
       writer.close();
+      return true;
     }
     catch (IOException e) {
       e.printStackTrace();
+      return false;
     }
   }
 
-  public static void saveAsHTML(File myFile, ArrayList<InventoryItem> items) {
+  public static boolean saveAsHTML(File myFile, ArrayList<InventoryItem> items) {
     try {
       PrintWriter writer = new PrintWriter(new FileWriter(myFile));
       writer.println("<TABLE BORDER><TR><TH>Value<TH>Serial Number<TH>Name</TR>");
@@ -67,27 +66,22 @@ public class InventoryIO {
       writer.println("</TABLE>");
       writer.flush();
       writer.close();
+      return true;
     }
     catch (IOException e) {
       e.printStackTrace();
+      return false;
     }
   }
 
   public static ArrayList<InventoryItem> loadFile(File myFile) {
     String type = FilenameUtils.getExtension(myFile.getName());
-    if (type.equals("txt")) {
-      return loadFromTSV(myFile);
-    }
-    else if (type.equals("json")) {
-      return loadFromJSon(myFile);
-    }
-    else if (type.equals("html")) {
-      return loadFromHTML(myFile);
-    }
-    else {
-      System.out.println("Ya can't load that!");
-      return null;
-    }
+    return switch (type) {
+      case "txt" -> loadFromTSV(myFile);
+      case "json" -> loadFromJSon(myFile);
+      case "html" -> loadFromHTML(myFile);
+      default -> null;
+    };
   }
 
   public static ArrayList<InventoryItem> loadFromTSV(File myFile) {

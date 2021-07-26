@@ -54,6 +54,13 @@ public class InventoryItem {
 
   @Override
   public boolean equals(Object o) {
+    // Overridden equals operation
+    // if the given object is equal to this
+      // return true
+    // if the given object is null or a different class
+      // return false
+    // Cast given object to this class
+    // return true only if all fields are equal
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     InventoryItem that = (InventoryItem) o;
@@ -62,6 +69,7 @@ public class InventoryItem {
 
   @Override
   public int hashCode() {
+    // Return hash from all properties
     return Objects.hash(serial, name, value);
   }
 }

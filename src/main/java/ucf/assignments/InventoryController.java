@@ -12,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.*;
-
 import java.io.File;
 import java.util.ArrayList;
 
@@ -40,9 +39,11 @@ public class InventoryController {
   @FXML
   public TextField searchField;
   @FXML
-  public ChoiceBox searchByBox;
+  public ChoiceBox<String> searchByBox;
   @FXML
   public Button searchButton;
+  @FXML
+  public Label invalidIOLabel;
 
   InventoryStore storage;
   SceneManager sceneManager;
@@ -88,7 +89,7 @@ public class InventoryController {
 
   @FXML
   public void searchClicked(ActionEvent actionEvent) {
-    tableDisplay.getSelectionModel().select(search((String) searchByBox.getValue(), searchField.getText()));
+    tableDisplay.getSelectionModel().select(search(searchByBox.getValue(), searchField.getText()));
   }
 
   public void enterWindow(String window) {
@@ -102,6 +103,7 @@ public class InventoryController {
 
   public void refresh() {
     storage.refreshTable();
+    invalidIOLabel.setVisible(false);
   }
 
   @FXML
@@ -158,7 +160,7 @@ public class InventoryController {
             ,new FileChooser.ExtensionFilter("JSon Files", "*.json")
     );
     File newFile = chooser.showSaveDialog(window);
-    InventoryIO.saveFile(newFile, storage.getItems());
+    invalidIOLabel.setVisible(!InventoryIO.saveFile(newFile, storage.getItems()));
   }
 
   @FXML
@@ -170,6 +172,9 @@ public class InventoryController {
     if (loadedItems != null) {
       storage.setItems(loadedItems);
       refresh();
+    }
+    else {
+      invalidIOLabel.setVisible(true);
     }
   }
 }

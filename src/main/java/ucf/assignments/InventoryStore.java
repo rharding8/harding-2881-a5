@@ -28,21 +28,15 @@ public class InventoryStore {
   }
 
   public void addItem(String serial, String name, BigDecimal value) {
-    // if serialSet contains serial
-      // return false
     // Add serial to serialSet
     // Add a new InventoryItem created from given parameters to items
-    // Return true
     serialSet.add(serial);
     items.add(new InventoryItem(serial, name, value));
   }
 
   public void removeItem(InventoryItem i) {
-    // if serialSet does not contain serial
-      // return false
     // Remove the serial of i from serialSet
     // Remove i from items
-    // return true
     serialSet.remove(i.getSerial());
     items.remove(i);
   }
@@ -53,6 +47,10 @@ public class InventoryStore {
   }
 
   public void setItems(ArrayList<InventoryItem> items) {
+    // Set items to given ArrayList
+    // Reset serialSet
+    // for every InventoryItem in the ArrayList
+      // add the serial to serialSet
     this.items = items;
     serialSet = new HashSet<>();
     for (InventoryItem i: items) {
@@ -66,6 +64,7 @@ public class InventoryStore {
   }
 
   public void refreshTable() {
+    // Clear the table
     // Set the table to show the items using an observableArrayList
     table.setItems(null);
     table.setItems(FXCollections.observableArrayList(getItems()));
